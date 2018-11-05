@@ -45,10 +45,14 @@ Configure::write('App', [
 ]);
 Configure::write('debug', true);
 
-$TMP = new Folder(TMP);
-$TMP->create(TMP . 'cache/models', 0777);
-$TMP->create(TMP . 'cache/persistent', 0777);
-$TMP->create(TMP . 'cache/views', 0777);
+//@codingStandardsIgnoreStart
+@mkdir(CACHE);
+@mkdir(CACHE . 'models');
+@mkdir(CACHE . 'persistent');
+@mkdir(CACHE . 'views');
+@mkdir(LOGS);
+@mkdir(SESSIONS);
+//@codingStandardsIgnoreEnd
 
 $cache = [
     'default' => [
