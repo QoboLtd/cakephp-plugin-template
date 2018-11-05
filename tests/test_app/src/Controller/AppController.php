@@ -1,7 +1,7 @@
 <?php
-namespace Foobar\Test\App\Controller;
+namespace App\Controller;
 
-use \Cake\Controller\Controller;
+use Cake\Controller\Controller;
 
 class AppController extends Controller
 {
