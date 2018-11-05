@@ -108,6 +108,18 @@ Log::setConfig([
     ]
 ]);
 
+Chronos::setTestNow(Chronos::now());
+
+ini_set('intl.default_locale', 'en_US');
+ini_set('session.gc_divisor', '1');
+
+loadPHPUnitAliases();
+
+// Fixate sessionid early on, as php7.2+
+// does not allow the sessionid to be set after stdout
+// has been written to.
+session_id('cli');
+
 // If plugin has routes.php/bootstrap.php then load them, otherwise don't.
 $loadPluginRoutes = file_exists(ROOT . DS . 'config' . DS . 'routes.php');
 $loadPluginBootstrap = file_exists(ROOT . DS . 'config' . DS . 'bootstrap.php');
