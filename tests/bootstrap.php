@@ -93,6 +93,22 @@ Configure::write('Session', [
     'defaults' => 'php'
 ]);
 
+Log::setConfig([
+    'debug' => [
+        'engine' => FileLog::class,
+        'levels' => ['notice', 'info', 'debug'],
+        'file' => 'debug',
+        'path' => LOGS
+    ],
+    'error' => [
+        'engine' => FileLog::class,
+        'levels' => ['warning', 'error', 'critical', 'alert', 'emergency'],
+        'file' => 'error',
+        'path' => LOGS
+    ]
+]);
+
+
 // Alias AppController to the test App
 class_alias($pluginName . '\Test\App\Controller\AppController', 'App\Controller\AppController');
 // If plugin has routes.php/bootstrap.php then load them, otherwise don't.
