@@ -125,7 +125,7 @@ loadPHPUnitAliases();
 // has been written to.
 session_id('cli');
 
-// If plugin has routes.php/bootstrap.php then load them, otherwise don't.
+// if plugin has routes.php/bootstrap.php then load them.
 $loadPluginRoutes = file_exists(ROOT . DS . 'config' . DS . 'routes.php');
 $loadPluginBootstrap = file_exists(ROOT . DS . 'config' . DS . 'bootstrap.php');
-Cake\Core\Plugin::load($pluginName, ['path' => ROOT . DS, 'autoload' => true, 'routes' => $loadPluginRoutes, 'bootstrap' => $loadPluginBootstrap]);
+Plugin::load($pluginName, ['path' => ROOT . DS, 'routes' => $loadPluginRoutes, 'bootstrap' => $loadPluginBootstrap]);
