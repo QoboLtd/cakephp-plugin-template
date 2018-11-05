@@ -33,17 +33,6 @@ define('APP', TEST_APP . APP_DIR . DS);
 define('WWW_ROOT', TEST_APP . 'webroot' . DS);
 define('CONFIG', TEST_APP . 'config' . DS);
 
-
-Configure::write('App', [
-    'namespace' => $pluginName . '\Test\App',
-    'paths' => [
-        'templates' => [
-            APP . 'Template' . DS
-        ]
-    ]
-]);
-Configure::write('debug', true);
-
 //@codingStandardsIgnoreStart
 @mkdir(CACHE);
 @mkdir(CACHE . 'models');
@@ -57,6 +46,24 @@ require_once CORE_PATH . 'config' . DS . 'bootstrap.php';
 
 date_default_timezone_set('UTC');
 mb_internal_encoding('UTF-8');
+
+Configure::write('debug', true);
+Configure::write('App', [
+    'namespace' => 'App',
+    'encoding' => 'UTF-8',
+    'base' => false,
+    'baseUrl' => false,
+    'dir' => APP_DIR,
+    'webroot' => 'webroot',
+    'wwwRoot' => WWW_ROOT,
+    'fullBaseUrl' => 'http://localhost',
+    'imageBaseUrl' => 'img/',
+    'jsBaseUrl' => 'js/',
+    'cssBaseUrl' => 'css/',
+    'paths' => [
+        'templates' => [APP . 'Template' . DS]
+    ]
+]);
 
 $cache = [
     'default' => [
