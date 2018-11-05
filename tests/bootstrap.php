@@ -65,33 +65,25 @@ Configure::write('App', [
     ]
 ]);
 
-$cache = [
-    'default' => [
-        'engine' => 'File'
-    ],
+Cache::setConfig([
     '_cake_core_' => [
         'className' => 'File',
-        'prefix' => strtolower($pluginName) . '_myapp_cake_core_',
-        'path' => CACHE . 'persistent/',
-        'serialize' => true,
-        'duration' => '+10 seconds'
+        'prefix' => strtolower($pluginName) . '_test_app_cake_core_',
+        'serialize' => true
     ],
     '_cake_model_' => [
         'className' => 'File',
-        'prefix' => strtolower($pluginName) . '_my_app_cake_model_',
-        'path' => CACHE . 'models/',
-        'serialize' => 'File',
-        'duration' => '+10 seconds'
+        'prefix' => strtolower($pluginName) . '_test_app_cake_model_',
+        'serialize' => true
     ]
-];
+]);
 
-Cake\Cache\Cache::setConfig($cache);
 Cake\Core\Configure::write('Session', [
     'defaults' => 'php'
 ]);
 
 // Ensure default test connection is defined
-if (!getenv('db_dsn')) {
+if (! getenv('db_dsn')) {
     putenv('db_dsn=sqlite:///:memory:');
 }
 
