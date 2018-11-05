@@ -1,6 +1,11 @@
 <?php
+use Cake\Cache\Cache;
+use Cake\Chronos\Chronos;
 use Cake\Core\Configure;
-use Cake\Filesystem\Folder;
+use Cake\Core\Plugin;
+use Cake\Datasource\ConnectionManager;
+use Cake\Log\Engine\FileLog;
+use Cake\Log\Log;
 
 //$pluginName = 'Foobar';
 if (empty($pluginName)) {
