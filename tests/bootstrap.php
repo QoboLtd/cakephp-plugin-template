@@ -4,45 +4,35 @@ use Cake\Filesystem\Folder;
 
 //$pluginName = 'Foobar';
 if (empty($pluginName)) {
-    throw new \RuntimeException("Plugin name is not configured");
+    throw new \RuntimeException('Plugin name is not configured');
 }
 
-/*
- * Test suite bootstrap
- *
- * This function is used to find the location of CakePHP whether CakePHP
- * has been installed as a dependency of the plugin, or the plugin is itself
- * installed as a dependency of an application.
- */
-$findRoot = function ($root) {
-    do {
-        $lastRoot = $root;
-        $root = dirname($root);
-        if (is_dir($root . '/vendor/cakephp/cakephp')) {
-            return $root;
-        }
-    } while ($root !== $lastRoot);
-    throw new \RuntimeException("Failed to find CakePHP");
-};
+require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
-if (!defined('DS')) {
+if (! defined('DS')) {
     define('DS', DIRECTORY_SEPARATOR);
 }
-define('ROOT', $findRoot(__FILE__));
-define('APP_DIR', 'App');
-define('WEBROOT_DIR', 'webroot');
-define('APP', ROOT . '/tests/App/');
-define('CONFIG', ROOT . '/tests/config/');
-define('WWW_ROOT', ROOT . DS . WEBROOT_DIR . DS);
-define('TESTS', ROOT . DS . 'tests' . DS);
+
+define('ROOT', dirname(__DIR__));
+define('APP_DIR', 'src');
+
 define('TMP', ROOT . DS . 'tmp' . DS);
 define('LOGS', TMP . 'logs' . DS);
 define('CACHE', TMP . 'cache' . DS);
-define('CAKE_CORE_INCLUDE_PATH', ROOT . '/vendor/cakephp/cakephp');
+define('SESSIONS', TMP . 'sessions' . DS);
+
+define('CAKE_CORE_INCLUDE_PATH', ROOT . DS . 'vendor' . DS . 'cakephp' . DS . 'cakephp');
 define('CORE_PATH', CAKE_CORE_INCLUDE_PATH . DS);
 define('CAKE', CORE_PATH . 'src' . DS);
+define('CORE_TESTS', ROOT . DS . 'tests' . DS);
+define('CORE_TEST_CASES', CORE_TESTS . 'TestCase');
+define('TEST_APP', CORE_TESTS . 'test_app' . DS);
 
-require ROOT . '/vendor/autoload.php';
+// Point app constants to the test app.
+define('APP', TEST_APP . APP_DIR . DS);
+define('WWW_ROOT', TEST_APP . 'webroot' . DS);
+define('CONFIG', TEST_APP . 'config' . DS);
+
 require CORE_PATH . 'config/bootstrap.php';
 
 Configure::write('App', [
