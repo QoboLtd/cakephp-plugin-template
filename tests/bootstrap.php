@@ -78,25 +78,19 @@ Cache::setConfig([
     ]
 ]);
 
-Cake\Core\Configure::write('Session', [
-    'defaults' => 'php'
-]);
-
 // Ensure default test connection is defined
 if (! getenv('db_dsn')) {
     putenv('db_dsn=sqlite:///:memory:');
 }
 
-Cake\Datasource\ConnectionManager::setConfig('default', [
+ConnectionManager::setConfig('test', [
     'url' => getenv('db_dsn'),
     'quoteIdentifiers' => true,
     'timezone' => 'UTC'
 ]);
 
-Cake\Datasource\ConnectionManager::setConfig('test', [
-    'url' => getenv('db_dsn'),
-    'quoteIdentifiers' => true,
-    'timezone' => 'UTC'
+Configure::write('Session', [
+    'defaults' => 'php'
 ]);
 
 // Alias AppController to the test App
