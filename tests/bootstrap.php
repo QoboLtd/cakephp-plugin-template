@@ -33,7 +33,6 @@ define('APP', TEST_APP . APP_DIR . DS);
 define('WWW_ROOT', TEST_APP . 'webroot' . DS);
 define('CONFIG', TEST_APP . 'config' . DS);
 
-require CORE_PATH . 'config/bootstrap.php';
 
 Configure::write('App', [
     'namespace' => $pluginName . '\Test\App',
@@ -53,6 +52,11 @@ Configure::write('debug', true);
 @mkdir(LOGS);
 @mkdir(SESSIONS);
 //@codingStandardsIgnoreEnd
+
+require_once CORE_PATH . 'config' . DS . 'bootstrap.php';
+
+date_default_timezone_set('UTC');
+mb_internal_encoding('UTF-8');
 
 $cache = [
     'default' => [
