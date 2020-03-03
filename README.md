@@ -11,12 +11,17 @@ Developed by [Qobo](https://www.qobo.biz), used in [Qobrix](https://qobrix.com).
 Usage
 -----
 
-Pull the template code into your plugin:
+Pull the template code into your plugin directory (must be a git directory):
 
 ```
 cd my-plugin
 git pull https://github.com/QoboLtd/cakephp-plugin-template master
 ```
+
+If you get the following error, please make sure that the plugin directory is a valid git directory. If not, you can always initiate it by executing `git init`
+
+```fatal: not a git repository (or any of the parent directories): .git```
+
 
 Make sure your `composer.json` has something like this:
 
